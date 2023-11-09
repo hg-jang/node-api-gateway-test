@@ -1,13 +1,15 @@
 const express = require('express');
+const morgan = require('morgan');
 
 const app = express();
 const port = 3000;
 
-app.get('/', (req, res) => {
-  const { name = 'user' } = req.query;
-  res.send(`Hello ${name}!`);
+app.use(morgan('combined'));
+
+app.get('/hello', (req, res) => {
+  return res.send('HELLO WORLD!');
 });
 
 app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
+  console.log(`Example app listening at http://localhost:${port}`);
 });
